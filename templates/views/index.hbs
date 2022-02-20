@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Home</title>
+        <link rel="icon" href="/img/favicon-bunny.png">
+        <!-- koristimo absolute path,krece od web-server root-a za staticke fajlove sto je kod nas setovano na publicDirectoryPath tj public directory -->
+        <link rel="stylesheet" href="/css/styles.css">
+        <!-- client side JS file -->
+        {{!-- <script src="/js/app.js"></script> --}}
+    </head>
+    <body>
+        <div class="main-content">
+            {{>header}}
+            <p>{{content}}</p>
+        </div>
+        {{>footer}}
+    </body>
+</html>

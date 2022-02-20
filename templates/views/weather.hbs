@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Weather</title>
+        <link rel="icon" href="/img/favicon-bunny.png">
+        <link rel="stylesheet" href="/css/styles.css">
+        <script src="/js/app.js" defer></script>
+    </head>
+    <body>
+        <div class="main-content">
+            {{>header}}
+            <p>{{location}}</p>
+            <p>{{address}}</p>
+            <p>
+                Temperature: {{forecast.temperature}}
+                <img src="{{forecast.weather_icons}}" alt="icon">
+                <span>{{forecast.weather_descriptions}}</span>
+            </p>
+
+            <form class="weather-form">
+                <input type="text" placeholder="address">
+                <button>Search</button>
+            </form>
+
+            <div>
+                <p style="font-weight: bold;">Response from weather API</p>
+                <p id="weather-api-response"></p>
+            </div>
+        </div>
+        {{>footer}}
+    </body>
+</html>
