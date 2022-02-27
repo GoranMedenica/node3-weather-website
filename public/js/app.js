@@ -14,7 +14,7 @@ weatherForm.addEventListener('submit', (event) => {
     weatherApiResponseEl.style.color = 'black';
 
     // FETCH --> browser based API (NOT part of JS + not accessible in Node.js)
-    fetch('http://localhost:3000/weather-api?address=' + addresValue).then((response) => {
+    fetch('/weather-api?address=' + addresValue).then((response) => {
         response.json().then(data => {
             if (data.error) {
                 weatherApiResponseEl.textContent = data.error;

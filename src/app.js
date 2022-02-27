@@ -14,6 +14,9 @@ const forecast = require('./utils/forecast');
 // generate app
 const app = express();
 
+// process.env.PORT will exist only on Heroku, locally we will use 3000
+const port = process.env.PORT || 3000;
+
 // console.log(__dirname); // absolutni path direktorijuma u kom se ovaj fajl nalazi
 // console.log(__filename); // absolutni path ovog fajla
 
@@ -186,9 +189,9 @@ app.get('*', (req, res) => {
 // **********
 
 // start app and listen to specific port
-// 3000 is common for development port
-app.listen(3000, () => {
-    console.log('Server is up on port 3000.')
+// 3000 is common for development port (different will be used for Heroku)
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}.`)
 })
 
 // ***** Nodemon *****
