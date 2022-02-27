@@ -70,13 +70,21 @@ hbs.registerPartials(partialsPath);
 
 //  *****za renderovanje dinamickog sadrzaja*****
 // ***** SERVER RENDERED pages *****
+// app.get('', (req, res) => {
+//     res.render('index', {
+//         title: 'Handlebars root view',
+//         content: 'Home page content',
+//         name: 'Me'
+//     }); // samo naziv viewa,bez ekstenzije
+//     // drugi argument je objekat sa podacima koji ce biti dostupni u view-u
+// })
+
 app.get('', (req, res) => {
-    res.render('index', {
-        title: 'Handlebars root view',
-        content: 'Home page content',
+    res.render('weather', {
+        title: 'Weather',
+        content: 'Weather page content',
         name: 'Me'
-    }); // samo naziv viewa,bez ekstenzije
-    // drugi argument je objekat sa podacima koji ce biti dostupni u view-u
+    })
 })
 
 app.get('/about', (req, res) => {
@@ -95,51 +103,51 @@ app.get('/help', (req, res) => {
     })
 })
 
-app.get('/products', (req, res) => {
-    // query string --> '?search=games&rating=5'
-    if(!req.query.search) { // recimo da je search param neophodan
-        return res.send({
-            error: 'You must provide search term'
-        })
-    }
+// app.get('/products', (req, res) => {
+//     // query string --> '?search=games&rating=5'
+//     if(!req.query.search) { // recimo da je search param neophodan
+//         return res.send({
+//             error: 'You must provide search term'
+//         })
+//     }
 
-    res.send({
-        products: []
-    })
-})
+//     res.send({
+//         products: []
+//     })
+// })
 
-app.get('/weather', (req, res) => {
-    if (!req.query.address) {
-        return res.send({
-            error: 'You must provide an address'
-        })
-    }
+// app.get('/weather', (req, res) => {
+//     if (!req.query.address) {
+//         return res.send({
+//             error: 'You must provide an address'
+//         })
+//     }
 
-    geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
-        if (error) {
-            return res.send({
-                error
-            })
-        }
+//     geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
+//         if (error) {
+//             return res.send({
+//                 error
+//             })
+//         }
 
-        forecast(latitude, longitude, (error, forecastData) => {
-            if (error) {
-                return res.send({
-                    error
-                })
-            }
+//         forecast(latitude, longitude, (error, forecastData) => {
+//             if (error) {
+//                 return res.send({
+//                     error
+//                 })
+//             }
 
-            console.log(forecastData)
-            res.render('weather', {
-                title: 'Weather',
-                location,
-                forecast: forecastData,
-                address: req.query.address,
-                name: 'Me'
-            })
-        })
-    })
-})
+//             console.log(forecastData)
+//             res.render('weather', {
+//                 title: 'Weather',
+//                 location,
+//                 forecast: forecastData,
+//                 address: req.query.address,
+//                 name: 'Me'
+//             })
+//         })
+//     })
+// })
 
 // samo API (JSON http endpoint)
 app.get('/weather-api', (req, res) => {
